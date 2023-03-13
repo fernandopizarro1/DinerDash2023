@@ -9,6 +9,8 @@ void Restaurant::setPlayer(Player *player) { this->player = player; }
 
 Restaurant::Restaurant() {
     floor.load("images/floor.jpg");
+    FurnitureSpriteSheet.load("images/sprite.png");
+    WelcomeMattImg.load("images/Welcome.png");
     entityManager = new EntityManager();
     ofImage chefPlayerImage;
     chefPlayerImage.load("images/chef.png");
@@ -17,11 +19,28 @@ Restaurant::Restaurant() {
     initCounters();
     initClients();
     generateClient();
+    tableImg.cropFrom(FurnitureSpriteSheet, 20, 28, 63, 52); // table
+    chairImg.cropFrom(FurnitureSpriteSheet, 108, 14, 31, 37); // chair
+    towelchairImg.cropFrom(FurnitureSpriteSheet, 108, 52, 31, 37); // the other chair 
+    entityManager->addEntity(new Entity(200, 100, 100, 100, tableImg)); // top left
+    entityManager->addEntity(new Entity(150, 150, 50, 50, chairImg));
+    entityManager->addEntity(new Entity(300, 150, 50, 50, chairImg));
+    entityManager->addEntity(new Entity(200, 300, 100, 100, tableImg)); // bottom left
+    entityManager->addEntity(new Entity(150, 350, 50, 50, chairImg));
+    entityManager->addEntity(new Entity(300, 350, 50, 50, chairImg)); 
+    entityManager->addEntity(new Entity(500, 100, 100, 100, tableImg)); // top right
+    entityManager->addEntity(new Entity(450, 150, 50, 50, chairImg));
+    entityManager->addEntity(new Entity(600, 150, 50, 50, chairImg));
+    entityManager->addEntity(new Entity(500, 300, 100, 100, tableImg)); // bottom right
+    entityManager->addEntity(new Entity(450, 350, 50, 50, chairImg));
+    entityManager->addEntity(new Entity(600, 350, 50, 50, chairImg));
+    entityManager->addEntity(new Entity(ofGetWidth() - 70, 0, 70, 70, WelcomeMattImg)); // Welcome matt
 
 }
 void Restaurant::initItems(){
     ofImage burgerSpriteSheet, cheeseImg, lettuceImg, tomatoImg, burgerImg, botBreadImg, topBreadImg, plateImg;
     burgerSpriteSheet.load("images/burger.png");
+
     topBreadImg.cropFrom(burgerSpriteSheet, 25, 16, 112, 43); // top bun
     burgerImg.cropFrom(burgerSpriteSheet, 30, 134, 103, 48); // patty
     cheeseImg.cropFrom(burgerSpriteSheet, 169, 213, 102, 39); // cheese
