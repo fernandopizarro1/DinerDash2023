@@ -11,7 +11,12 @@ void GameState::render() {
 }
 
 void GameState::keyPressed(int key){
-	restaurant->keyPressed(key);
+	if (key == 'h') {
+		setNextState("Start");
+		setFinished(true);
+	} else {
+		restaurant->keyPressed(key);
+	}
 }
 
 void GameState::mousePressed(int x, int y, int button){

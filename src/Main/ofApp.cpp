@@ -5,6 +5,8 @@ void ofApp::setup(){
 	//States
 	menuState = new MenuState();
 	gameState = new GameState();
+	startscreen = new StartScreen(); 
+
 	// Initial State
 	currentState = menuState;
 
@@ -22,7 +24,9 @@ void ofApp::update(){
 		if(currentState->hasFinished()){
 			if(currentState->getNextState() == "Menu"){
 				currentState = menuState;
-			}else if(currentState->getNextState() == "Game"){
+			} else if (currentState->getNextState() == "Start") {
+				currentState = startscreen; 
+			} else if(currentState->getNextState() == "Game"){
 				currentState = gameState;
 			}
 			currentState->reset();

@@ -1,15 +1,12 @@
-#pragma once
-
 #include "State.h"
 
-class MenuState : public State {
+class StartScreen : public State {
 private:
-	ofImage img1;
-	Button *startButton;
-	ofImage title; 
+	Button *CloseHelp;
+    int pos = 15; // y-positions of strings 
 	
 public:
-	MenuState();
+	StartScreen();
 	void tick();
 	void render();
 	void keyPressed(int key);

@@ -2,17 +2,20 @@
 
 MenuState::MenuState() {
 	string text = "Start";
+	title.load("images/title.jpg");
 	startButton = new Button(ofGetWidth()/2 - text.length()*8, ofGetHeight()/2 - text.length()*11, 64, 50, "Start");
 }
 void MenuState::tick() {
 	startButton->tick();
 	if(startButton->wasPressed()){
-		setNextState("Game");
+		setNextState("Start");
 		setFinished(true);
 
 	}
 }
 void MenuState::render() {
+	ofSetColor(255);
+	title.draw(0,0,ofGetWidth(),ofGetHeight());
 	ofSetBackgroundColor(230, 230, 250);
 	startButton->render();
 }
