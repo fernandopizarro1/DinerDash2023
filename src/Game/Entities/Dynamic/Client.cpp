@@ -8,8 +8,10 @@ Client::~Client(){
 }
 void Client::render(){
     burger->render();
-    ofSetColor (255,255,255);
+    double patienceloss = (patience/2000.0)*255;
+    ofSetColor(255,patienceloss,patienceloss);
     sprite.draw(x, y, width, height);
+    ofSetColor(ofColor::white);
     if(nextClient != nullptr){
         nextClient->render();
     }
