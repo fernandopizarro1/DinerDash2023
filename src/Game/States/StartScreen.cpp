@@ -20,6 +20,7 @@ void StartScreen::render() {
     ofDrawBitmapString("S - Serve the client.",0,pos * 5);
 	ofDrawBitmapString("H - Open and close the help menu.", 0, pos * 6);
 	ofSetBackgroundColor(230, 230, 250);
+	CloseHelp->setColor(0,0,0);
 	CloseHelp->render();
 }
 

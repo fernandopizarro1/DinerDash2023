@@ -11,7 +11,9 @@ public:
 	void render();
 	void addEntity(Entity *e);
 	void addClient(Client *c);
+	void checkLeavingClients();
 	void removeLeavingClients();
 	std::vector<Entity*> entities;
+	int left = 0;
 
 };

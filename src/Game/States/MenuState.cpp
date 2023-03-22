@@ -17,6 +17,7 @@ void MenuState::render() {
 	ofSetColor(255);
 	title.draw(0,0,ofGetWidth(),ofGetHeight());
 	ofSetBackgroundColor(230, 230, 250);
+	startButton->setColor(0,0,0);
 	startButton->render();
 }
 

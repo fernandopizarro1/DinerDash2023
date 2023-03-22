@@ -34,9 +34,17 @@ class State {
 		void setNextState(string nextState){
 			this->nextState = nextState;
 		}
+		
+		void setRetry(bool retry){
+			this->retry = retry;
+		}
+		bool getRetry(){
+			return retry; 
+		}
 
 	private:
 		string nextState;
 		bool finished = false;
+		bool retry = false; 
 
 };
