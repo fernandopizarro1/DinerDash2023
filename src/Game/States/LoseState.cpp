@@ -3,7 +3,7 @@
 LoseState::LoseState() {
 	text = "Restart?";
     Restart = new Button(ofGetWidth()/2 - text.length()*8, ofGetHeight()/2 - text.length()*13, 64, 50, "Restart?");
-	losescreen.load("images/Sad Chef.png");
+	losescreen.load("images/People/Sad_Chef.png");
 }
 void LoseState::tick() {
 	Restart->tick();

@@ -16,7 +16,7 @@ void Burger::addIngredient(Item *item) {
 }
 
 void Burger::removeIngredient(){
-    if(ingredients.size() > 1){
+    if(ingredients.size() >= 1){
         ingredients.pop_back();
     } 
 }

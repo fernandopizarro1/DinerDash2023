@@ -15,6 +15,7 @@ class Restaurant {
         int ticks=0;
         std::vector<ofImage> people;
         int money =0;
+        vector<Item*> posingredients; 
 
     public:
         Restaurant();

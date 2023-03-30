@@ -55,6 +55,7 @@ void Restaurant::initItems(){
     burger = new Item(burgerImg, "patty");
     botBread = new Item(botBreadImg, "bottomBun");
     topBread = new Item(topBreadImg, "topBun");
+    posingredients = {cheese,lettuce,tomato,burger};
 }
 void Restaurant::initCounters(){
     int counterWidth = 96;
@@ -111,10 +112,9 @@ void Restaurant::tick() {
 void Restaurant::generateClient(){
     Burger* b = new Burger(72, 100, 50, 25);
     b->addIngredient(botBread);
-    b->addIngredient(burger);
-    b->addIngredient(cheese);
-    b->addIngredient(tomato);
-    b->addIngredient(lettuce);
+    for(int i = 0; i < ofRandom(posingredients.size()); i++){
+        b->addIngredient(posingredients[ofRandom(posingredients.size())]);
+    }
     b->addIngredient(topBread);
     entityManager->addClient(new Client(0, 50, 64, 72,people[ofRandom(8)], b));
 }
