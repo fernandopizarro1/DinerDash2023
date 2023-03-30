@@ -11,6 +11,12 @@ void GameState::tick() {
 		setRetry(true);
 		restaurant->getEntityManager()->left = 0;
 	}
+	if(restaurant->getMoney() == 100){
+		setNextState("Win");
+		setFinished(true);
+		setRetry(true);
+		restaurant->setMoney(0);
+	}
 }
 void GameState::render() {
 	ofDrawBitmapString("Customers lost: " + to_string(restaurant->getEntityManager()->left), ofGetWidth() / 2, 20);

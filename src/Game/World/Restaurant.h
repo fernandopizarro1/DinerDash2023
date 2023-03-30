@@ -38,4 +38,8 @@ class Restaurant {
         void render();
         void keyPressed(int key);
         EntityManager* getEntityManager() { return entityManager; }
+
+        void setMoney(int money){this->money = money;}
+
+        int getMoney(){return money;}
 };
