@@ -30,5 +30,18 @@ void Client::tick(){
 
 int Client::serve(Burger* burger){
     isLeaving = true;
-    return 10;
+    vector<Item *> ingredients = burger->getIngredients();
+    int finalprice = 0;
+    for(Item* i : ingredients){
+        if(i->name == "chesee"){
+            finalprice += 3;
+        }else if(i->name == "tomato" || i->name == "lettuce"){
+            finalprice += 2;
+        }else if(i->name == "patty"){
+            finalprice +=4;
+        }else if(i->name == "topBun" || i->name == "bottomBun"){
+            finalprice++;
+        }
+    }
+    return finalprice;
 }
