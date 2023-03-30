@@ -19,4 +19,6 @@ class Burger {
     void setY(int y) {
         this->y = y;
     }
+    bool Burgers_Equal(Burger* burger1, Burger* burger2);
+    vector<Item *> getIngredients() {return ingredients;}
 };
