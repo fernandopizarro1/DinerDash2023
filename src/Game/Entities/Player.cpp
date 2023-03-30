@@ -19,16 +19,6 @@ Player::Player(int x, int y, int width, int height, ofImage sprite, EntityManage
 }
 void Player::tick(){
     chefAnim->tick();
-    if(facing == "left"){
-        x-=speed;
-    }else if(facing == "right"){
-        x+=speed;
-    }
-    if(x <= 0){
-        facing = "right";
-    }else if(x + width >= ofGetWidth()){
-        facing = "left";
-    }
 }
 
 void Player::render(){
@@ -56,6 +46,12 @@ void Player::keyPressed(int key){
         }
     }else if(key == 'u'){
         burger->removeIngredient();
+    }else if(key == OF_KEY_LEFT && x>=0){
+        facing = "left";
+        x-=speed * 5;
+    }else if(key == OF_KEY_RIGHT && x + width <= ofGetWidth() ){
+        facing = "right";
+        x+=speed * 5;
     }
 }
 BaseCounter* Player::getActiveCounter(){
