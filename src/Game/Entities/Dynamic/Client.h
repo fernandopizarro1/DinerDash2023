@@ -16,4 +16,5 @@ class Client: public Entity{
         bool isLeaving=false;
 
         int getPatience() { return patience; }
+        Burger* getBurger() {return burger;}
 };

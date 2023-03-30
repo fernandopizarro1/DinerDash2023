@@ -32,3 +32,28 @@ void Burger::render(){
 void Burger::clear(){
     ingredients.empty();
 }
+
+bool Burger::Burgers_Equal(Burger* burger1, Burger* burger2){
+    vector<Item *> burg1ing = burger1->getIngredients();
+    vector<Item *> burg2ing = burger2->getIngredients();
+    vector<Item *> copy2 = burg2ing;
+    int lastitem = burg2ing.size() - 1;
+    if(burg1ing.size() != burg2ing.size()){
+        return false;
+    } else if(burg2ing[0]->name != "bottomBun" || burg2ing[lastitem]->name != "topBun"){
+        return false;
+    }
+    for(int i = 0; i < burg1ing.size(); i++){
+        bool same = false;
+        for(int j = 0; j < copy2.size(); j++){
+            if(burg1ing[i] == copy2[j]){
+                same = true;
+                copy2.erase(copy2.begin() + j);
+            }
+        }
+        if(!same){
+            return false;
+        }
+    }
+    return true; 
+}

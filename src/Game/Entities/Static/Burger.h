@@ -14,10 +14,12 @@ class Burger {
   public:
     Burger(int, int, int, int);
     void addIngredient(Item *item);
+    void removeIngredient();
     void render();
     void clear();
     void setY(int y) {
         this->y = y;
     }
-    void removeIngredient();
+    bool Burgers_Equal(Burger* burger1, Burger* burger2);
+    vector<Item *> getIngredients() {return ingredients;}
 };
