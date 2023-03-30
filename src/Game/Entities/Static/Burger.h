@@ -19,4 +19,5 @@ class Burger {
     void setY(int y) {
         this->y = y;
     }
+    void removeIngredient();
 };
