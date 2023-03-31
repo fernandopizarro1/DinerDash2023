@@ -22,4 +22,5 @@ class Player: public Entity{
         BaseCounter* getActiveCounter();
         Burger* getBurger(){ return burger;
         }
+        bool remove = false; 
 };

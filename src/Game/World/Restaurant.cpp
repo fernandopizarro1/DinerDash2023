@@ -123,7 +123,7 @@ void Restaurant::render() {
     player->render();
     entityManager->render();
     ofSetColor(0, 100, 0);
-    ofDrawBitmapString("Money: " + to_string(money), ofGetWidth()/2, 10);
+    ofDrawBitmapString("Money: $" + to_string(money), ofGetWidth()/2, 10);
     ofSetColor(256, 256, 256);
 }
 void Restaurant::serveClient(){
@@ -135,6 +135,10 @@ void Restaurant::serveClient(){
 }
 void Restaurant::keyPressed(int key) {
     player->keyPressed(key);
+    if(player->remove){
+        money--;
+        player->remove = false; 
+    }
     if(key == 's'){
         serveClient();
     }

@@ -40,7 +40,7 @@ bool Burger::Burgers_Equal(Burger* burger1, Burger* burger2){
     int lastitem = burg2ing.size() - 1;
     if(burg1ing.size() != burg2ing.size()){
         return false;
-    } else if(burg2ing[0]->name != "bottomBun" || burg2ing[lastitem]->name != "topBun"){
+    } else if(burg2ing[lastitem]->name != "topBun" || burg2ing[0]->name != "bottomBun"){
         return false;
     }
     for(int i = 0; i < burg1ing.size(); i++){

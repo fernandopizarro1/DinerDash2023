@@ -14,7 +14,7 @@ class Restaurant {
         EntityManager* entityManager;
         int ticks=0;
         std::vector<ofImage> people;
-        int money =0;
+        int money = 10;
         vector<Item*> posingredients; 
 
     public:
