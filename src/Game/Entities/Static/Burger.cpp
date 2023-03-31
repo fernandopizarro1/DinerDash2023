@@ -30,7 +30,7 @@ void Burger::render(){
 }
 
 void Burger::clear(){
-    ingredients.empty();
+    ingredients.clear();
 }
 
 bool Burger::Burgers_Equal(Burger* burger1, Burger* burger2){

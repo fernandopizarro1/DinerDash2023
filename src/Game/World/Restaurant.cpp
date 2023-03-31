@@ -127,11 +127,15 @@ void Restaurant::render() {
     ofSetColor(256, 256, 256);
 }
 void Restaurant::serveClient(){
-    if(entityManager->firstClient!= nullptr){
-        if(player->getBurger()->Burgers_Equal(entityManager->firstClient->getBurger(),player->getBurger())){
-            money += entityManager->firstClient->serve(player->getBurger());
+    Client* tempclient = entityManager->firstClient; 
+    while(tempclient != nullptr){
+        if(player->getBurger()->Burgers_Equal(tempclient->getBurger(),player->getBurger())){
+            money += tempclient->serve(player->getBurger());
+            break; 
         }
+        tempclient = tempclient->nextClient;
     }
+    player->getBurger()->clear(); 
 }
 void Restaurant::keyPressed(int key) {
     player->keyPressed(key);
