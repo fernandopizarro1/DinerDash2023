@@ -12,6 +12,7 @@ class Restaurant {
     private:
         Player* player;
         EntityManager* entityManager;
+        int bticks = 0; 
         int ticks=0;
         std::vector<ofImage> people;
         int money = 10;

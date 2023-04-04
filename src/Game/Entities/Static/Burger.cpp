@@ -24,8 +24,13 @@ void Burger::removeIngredient(){
 void Burger::render(){
     int counter = 1;
     for (Item* ingredient:ingredients){
+        if(ingredient->name == "patty"){
+            ofSetColor(153,101,21);
+        }else {
+            ofSetColor(255);
+        }
         ingredient->sprite.draw(x-5,y-(counter * 10)+55,width*0.70,height*0.70);
-        counter++;
+        counter++; 
     }
 }
 
@@ -49,6 +54,7 @@ bool Burger::Burgers_Equal(Burger* burger1, Burger* burger2){
             if(burg1ing[i] == copy2[j]){
                 same = true;
                 copy2.erase(copy2.begin() + j);
+                break;
             }
         }
         if(!same){

@@ -17,3 +17,14 @@ class BaseCounter: public Entity {
         void showItem();
 
 };
+
+class StoveCounter : public BaseCounter {
+    private: 
+        Item* item; 
+
+    public:
+        StoveCounter(int x, int y, int width, int height, Item* item, ofImage sprite);
+        Item* getItem();
+        void showItem();
+
+};
