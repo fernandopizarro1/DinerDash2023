@@ -1,7 +1,7 @@
 #include "ofApp.h"
 //--------------------------------------------------------------
 void ofApp::setup(){
-	ofSetWindowTitle("Java Game Box");
+	ofSetWindowTitle("Diner Dash!");
 	//States
 	menuState = new MenuState();
 	gameState = new GameState();
@@ -13,8 +13,9 @@ void ofApp::setup(){
 	currentState = menuState;
 
 	// Sound
-	sound.load("music.wav");
+	sound.load("jazz.mp3");
 	sound.setLoop(true);
+	sound.setVolume(0.4);
 	sound.play();
 
 }

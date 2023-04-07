@@ -12,11 +12,13 @@ class Restaurant {
     private:
         Player* player;
         EntityManager* entityManager;
+        // Ticks to cook burger
         int bticks = 0; 
         int ticks=0;
         std::vector<ofImage> people;
         int money = 10;
         vector<Item*> posingredients; 
+        ofImage inspector;
 
     public:
         Restaurant();
@@ -35,6 +37,7 @@ class Restaurant {
         void initCounters();
         void initClients();
         void generateClient();
+        void generateInspector();
         void serveClient();
         void tick();
         void render();

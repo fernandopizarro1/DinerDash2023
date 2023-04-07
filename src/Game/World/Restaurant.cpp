@@ -81,6 +81,7 @@ void Restaurant::initCounters(){
 }
 void Restaurant::initClients(){
     ofImage temp;
+    ofImage zoro, luffy;
     temp.load("images/People/Car_Designer3Female.png");
     people.push_back(temp);
     temp.load("images/People/Freedom_Fighter2Male.png");
@@ -97,15 +98,21 @@ void Restaurant::initClients(){
     people.push_back(temp);
     temp.load("images/People/Weather_Reporter2Female.png");
     people.push_back(temp);
+    temp.load("images/People/more_one_piece_art.png");
+    zoro.cropFrom(temp,33,0,255,324);
+    luffy.cropFrom(temp,309,0,152,324);
+    people.push_back(zoro);
+    people.push_back(luffy);
+    inspector.load("images/People/The_inspector.png");
 }
 void Restaurant::tick() {
     ticks++;
-    if(ticks % 400 == 0){
+    if(ticks % 500 == 0){
         generateClient();
     }
     if(player->cooking){
         bticks++;
-        if(bticks % 200 == 0){
+        if(bticks % 250 == 0){
             player->cooked = true;
             player->cooking = false; 
         }

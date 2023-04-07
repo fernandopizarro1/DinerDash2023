@@ -3,7 +3,8 @@
 class StartScreen : public State {
 private:
 	Button *CloseHelp;
-    int pos = 15; // y-positions of strings 
+    int pos = 15; // y-positions of strings
+	ofImage Screen;  
 	
 public:
 	StartScreen();

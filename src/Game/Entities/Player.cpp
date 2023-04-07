@@ -63,6 +63,7 @@ void Player::keyPressed(int key){
             Item* item = sc->getItem();
             if(item != nullptr && cooked){
                 burger->addIngredient(item);
+                remove = true; 
                 cooked = false; 
             } else if(item != nullptr && !cooking){
                 cooking = true; 

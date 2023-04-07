@@ -16,7 +16,7 @@ void LoseState::render() {
 	ofSetColor(255);
 	text = "You lost! Too many people left. You have to be faster than that!";
 	losescreen.draw(0,0,ofGetWidth(), ofGetHeight());
-	ofSetColor(0,0,0);
+	ofSetColor(0);
 	ofSetBackgroundColor(170, 74, 68);
 	ofDrawBitmapString("You lost! Too many people left. You have to be faster than that!", ofGetWidth() / 2 -text.length() *4 , ofGetHeight() / 2 - (text.length() + 30));
 	Restart->setColor(200,74,68);

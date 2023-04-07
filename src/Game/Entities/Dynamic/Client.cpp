@@ -8,7 +8,7 @@ Client::~Client(){
 }
 void Client::render(){
     burger->render();
-    double patienceloss = (patience/2000.0)*255;
+    double patienceloss = (patience/originalPatience)*255;
     ofSetColor(255,patienceloss,patienceloss);
     sprite.draw(x, y, width, height);
     ofSetColor(ofColor::white);
@@ -33,7 +33,7 @@ int Client::serve(Burger* burger){
     vector<Item *> ingredients = burger->getIngredients();
     int finalprice = 0;
     for(Item* i : ingredients){
-        if(i->name == "chesee"){
+        if(i->name == "cheese"){
             finalprice += 3;
         }else if(i->name == "tomato" || i->name == "lettuce"){
             finalprice += 2;
