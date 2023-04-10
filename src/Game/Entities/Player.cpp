@@ -16,10 +16,24 @@ Player::Player(int x, int y, int width, int height, ofImage sprite, EntityManage
     this->chefAnim = new Animation(50, chefAnimframes);
     this->entityManager = em;
     
+    vector<ofImage> FireAnimFrames; 
+    ofImage fire;
+    temp.load("images/fire_anim.png"); 
+    fire.cropFrom(temp,49,150,132,151);
+    FireAnimFrames.push_back(fire);
+    fire.cropFrom(temp,229,150,132,151);
+    FireAnimFrames.push_back(fire);
+    fire.cropFrom(temp,409,150,132,151);
+    FireAnimFrames.push_back(fire);
+    fire.cropFrom(temp,570,150,132,151);
+    this->FireAnim = new Animation(50,FireAnimFrames);
 }
+
 void Player::tick(){
     chefAnim->tick();
+    FireAnim->tick();
 }
+
 
 void Player::render(){
     BaseCounter *ac = getActiveCounter();
@@ -36,9 +50,15 @@ void Player::render(){
     } 
     if(cooking){
         item->sprite.draw(counterx + counterw / 2 -25, countery - 30, 50, 30);
+        ofImage fireFrame = FireAnim->getCurrentFrame(); 
+        fireFrame.draw(counterx + counterw / 2 - 35, countery, 25, 15); 
+        fireFrame.draw(counterx + counterw / 2 + 8, countery, 25, 15); 
+        fireFrame.draw(counterx + counterw / 2 - 35, countery + 20, 25, 15); 
+        fireFrame.draw(counterx + counterw / 2 + 8, countery + 20, 25, 15); 
+
     } else if(cooked){
         ofSetColor(153,101,21);
-        item->sprite.draw(counterx + counterw / 2 -25, countery - 30, 50, 30);
+        item->sprite.draw(counterx + counterw / 2 - 25, countery - 30, 50, 30);
     }
     ofSetColor(256, 256, 256);
     ofImage currentFrame = chefAnim->getCurrentFrame();

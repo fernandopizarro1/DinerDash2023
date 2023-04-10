@@ -17,7 +17,7 @@ class Restaurant {
         int bticks = 0; 
         int ticks=0;
         std::vector<ofImage> people;
-        int money = 0;
+        int money = 10;
         vector<Item*> posingredients; 
         ofImage inspector;
         int message_ticks = 0;

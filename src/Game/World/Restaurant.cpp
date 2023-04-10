@@ -158,8 +158,8 @@ void Restaurant::generateClient(){
 
 void Restaurant::render() {
     floor.draw(0,0, ofGetWidth(), ofGetHeight());
-    player->render();
     entityManager->render();
+    player->render();
     ofSetColor(0, 100, 0);
     ofDrawBitmapString("Money: $" + to_string(money), ofGetWidth()/2, 10);
     ofSetColor(255, 0,0);
