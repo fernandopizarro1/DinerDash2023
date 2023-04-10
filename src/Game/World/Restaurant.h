@@ -7,6 +7,7 @@
 #include "EntityManager.h"
 #include "Player.h"
 #include "ofMain.h"
+#include "Inspector.h"
 
 class Restaurant {
     private:
@@ -16,9 +17,11 @@ class Restaurant {
         int bticks = 0; 
         int ticks=0;
         std::vector<ofImage> people;
-        int money = 10;
+        int money = 0;
         vector<Item*> posingredients; 
         ofImage inspector;
+        int message_ticks = 0;
+
 
     public:
         Restaurant();
@@ -47,4 +50,5 @@ class Restaurant {
         void setMoney(int money){this->money = money;}
 
         int getMoney(){return money;}
+
 };

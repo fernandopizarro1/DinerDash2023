@@ -107,8 +107,22 @@ void Restaurant::initClients(){
 }
 void Restaurant::tick() {
     ticks++;
-    if(ticks % 500 == 0){
+    if(ticks % 3000 == 0){
+        generateInspector();
+    }else if(ticks % 500 == 0){
         generateClient();
+    }
+    if(entityManager->Inspector_left){
+        money /= 2;
+        entityManager->Inspector_left = false; 
+        entityManager->message = true;
+    }
+    if(entityManager->message){
+        message_ticks--;
+        if(message_ticks < 0){
+            entityManager->message = false;
+            message_ticks = 250; 
+        }
     }
     if(player->cooking){
         bticks++;
@@ -122,7 +136,15 @@ void Restaurant::tick() {
 
 }
 
-
+void Restaurant::generateInspector(){
+    Burger* b = new Burger(72, 100, 50, 25);
+    b->addIngredient(botBread);
+    for(int i = 0; i < ofRandom(posingredients.size() - 1); i++){
+        b->addIngredient(posingredients[ofRandom(posingredients.size())]);
+    }
+    b->addIngredient(topBread);
+    entityManager->addClient(new Inspector(0, 50, 64, 72,inspector, b));
+}
 void Restaurant::generateClient(){
     Burger* b = new Burger(72, 100, 50, 25);
     b->addIngredient(botBread);
@@ -132,13 +154,22 @@ void Restaurant::generateClient(){
     b->addIngredient(topBread);
     entityManager->addClient(new Client(0, 50, 64, 72,people[ofRandom(people.size())], b));
 }
+
+
 void Restaurant::render() {
     floor.draw(0,0, ofGetWidth(), ofGetHeight());
     player->render();
     entityManager->render();
     ofSetColor(0, 100, 0);
     ofDrawBitmapString("Money: $" + to_string(money), ofGetWidth()/2, 10);
+    ofSetColor(255, 0,0);
+    if(entityManager->message){
+       string review = "You just lost $" + to_string(money) + ", don't get carried away and hurry!!!";
+        ofDrawBitmapString(review, ofGetWidth()/2 - review.size() * 4, ofGetHeight()/2 + 60); 
+    }
     ofSetColor(256, 256, 256);
+    
+    
 }
 void Restaurant::serveClient(){
     Client* tempclient = entityManager->firstClient; 

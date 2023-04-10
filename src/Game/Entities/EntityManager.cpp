@@ -14,9 +14,15 @@ void EntityManager::tick(){
 void EntityManager::checkLeavingClients(){
     Client* tempClient = firstClient;
     while(tempClient != nullptr){
-        if(tempClient->getPatience() == 0){
-            left++;
-        } 
+        if(Inspector* inspector = dynamic_cast<Inspector*>(tempClient)){
+            if(inspector->getPatience() == 0){
+                left++;
+                Inspector_left=true;
+            } else if(tempClient->getPatience() == 0){
+                left++;
+            }
+        }
+        
         tempClient = tempClient->nextClient;
     }
 }
