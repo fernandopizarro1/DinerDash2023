@@ -10,6 +10,7 @@ void GameState::tick() {
 		setFinished(true);
 		setRetry(true);
 		restaurant->getEntityManager()->left = 0;
+		restaurant->setMoney(10);
 	}
 	if(restaurant->getMoney() >= 100){
 		setNextState("Win");

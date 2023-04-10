@@ -18,10 +18,10 @@ void EntityManager::checkLeavingClients(){
             if(inspector->getPatience() == 0){
                 left++;
                 Inspector_left=true;
-            } else if(tempClient->getPatience() == 0){
+            }
+        } else if(tempClient->getPatience() == 0){
                 left++;
             }
-        }
         
         tempClient = tempClient->nextClient;
     }
