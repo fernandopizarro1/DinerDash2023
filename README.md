@@ -19,5 +19,6 @@ This project has a lot of classes and OOP concepts in it, so make sure to study 
 Please fill out the information below for each member of the team:
 
 ### [ STUDENT A NAME : STUDENT A EMAIL ]
-Fernando L. Pizarro Diaz
+Fernando L. Pizarro Diaz : fernando.pizarro1@upr.edu
 ### [ STUDENT B NAME : STUDENT B EMAIL ]
+Andrea P. Segarra Felix : andrea.segarra1@upr.edu
