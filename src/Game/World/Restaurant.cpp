@@ -55,6 +55,7 @@ void Restaurant::initItems(){
     burger = new Item(burgerImg, "patty");
     botBread = new Item(botBreadImg, "bottomBun");
     topBread = new Item(topBreadImg, "topBun");
+    posingredients = {cheese,lettuce,tomato,burger};
 }
 void Restaurant::initCounters(){
     int counterWidth = 96;
@@ -69,8 +70,8 @@ void Restaurant::initCounters(){
     plateCounterImg.cropFrom(counterSheet,0,133,32,50);//plates
     breadCounterImg.cropFrom(counterSheet,0,63,34,56);//buns
     entityManager->addEntity(new BaseCounter(0,yOffset-16, counterWidth, 117, nullptr, plateCounterImg));
-    entityManager->addEntity( new BaseCounter(counterWidth,yOffset-7, counterWidth,108, cheese, cheeseCounterImg));
-    entityManager->addEntity(new BaseCounter(counterWidth*2,yOffset, counterWidth, 102, burger, stoveCounterImg));
+    entityManager->addEntity(new BaseCounter(counterWidth,yOffset-7, counterWidth,108, cheese, cheeseCounterImg));
+    entityManager->addEntity( new StoveCounter(counterWidth*2,yOffset, counterWidth, 102, burger, stoveCounterImg));
     entityManager->addEntity(new BaseCounter(counterWidth*3, yOffset, counterWidth, 102, lettuce, lettuceCounterImg));
     entityManager->addEntity(new BaseCounter(counterWidth*4,yOffset, counterWidth, 102, nullptr, emptyCounterImg));
     entityManager->addEntity(new BaseCounter(counterWidth*5, yOffset -10, counterWidth, 113, tomato, tomatoCounterImg));
@@ -80,6 +81,7 @@ void Restaurant::initCounters(){
 }
 void Restaurant::initClients(){
     ofImage temp;
+    ofImage zoro, luffy;
     temp.load("images/People/Car_Designer3Female.png");
     people.push_back(temp);
     temp.load("images/People/Freedom_Fighter2Male.png");
@@ -96,43 +98,96 @@ void Restaurant::initClients(){
     people.push_back(temp);
     temp.load("images/People/Weather_Reporter2Female.png");
     people.push_back(temp);
+    temp.load("images/People/more_one_piece_art.png");
+    zoro.cropFrom(temp,33,0,255,324);
+    luffy.cropFrom(temp,309,0,152,324);
+    people.push_back(zoro);
+    people.push_back(luffy);
+    inspector.load("images/People/The_inspector.png");
 }
 void Restaurant::tick() {
     ticks++;
-    if(ticks % 400 == 0){
+    if(ticks % 3000 == 0){
+        generateInspector();
+    }else if(ticks % 500 == 0){
         generateClient();
+    }
+    if(entityManager->Inspector_left){
+        money /= 2;
+        entityManager->Inspector_left = false; 
+        entityManager->message = true;
+    }
+    if(entityManager->message){
+        message_ticks--;
+        if(message_ticks < 0){
+            entityManager->message = false;
+            message_ticks = 250; 
+        }
+    }
+    if(player->cooking){
+        bticks++;
+        if(bticks % 250 == 0){
+            player->cooked = true;
+            player->cooking = false; 
+        }
     }
     player->tick();
     entityManager->tick();
 
 }
 
-
+void Restaurant::generateInspector(){
+    Burger* b = new Burger(72, 100, 50, 25);
+    b->addIngredient(botBread);
+    for(int i = 0; i < ofRandom(posingredients.size() - 1); i++){
+        b->addIngredient(posingredients[ofRandom(posingredients.size())]);
+    }
+    b->addIngredient(topBread);
+    entityManager->addClient(new Inspector(0, 50, 64, 72,inspector, b));
+}
 void Restaurant::generateClient(){
     Burger* b = new Burger(72, 100, 50, 25);
     b->addIngredient(botBread);
-    b->addIngredient(burger);
-    b->addIngredient(cheese);
-    b->addIngredient(tomato);
-    b->addIngredient(lettuce);
+    for(int i = 0; i < ofRandom(posingredients.size() - 1); i++){
+        b->addIngredient(posingredients[ofRandom(posingredients.size())]);
+    }
     b->addIngredient(topBread);
-    entityManager->addClient(new Client(0, 50, 64, 72,people[ofRandom(8)], b));
+    entityManager->addClient(new Client(0, 50, 64, 72,people[ofRandom(people.size())], b));
 }
+
+
 void Restaurant::render() {
     floor.draw(0,0, ofGetWidth(), ofGetHeight());
-    player->render();
     entityManager->render();
+    player->render();
     ofSetColor(0, 100, 0);
-    ofDrawBitmapString("Money: " + to_string(money), ofGetWidth()/2, 10);
+    ofDrawBitmapString("Money: $" + to_string(money), ofGetWidth()/2, 10);
+    ofSetColor(255, 0,0);
+    if(entityManager->message){
+       string review = "You just lost $" + to_string(money) + ", don't get carried away and hurry!!!";
+        ofDrawBitmapString(review, ofGetWidth()/2 - review.size() * 4, ofGetHeight()/2 + 60); 
+    }
     ofSetColor(256, 256, 256);
+    
+    
 }
 void Restaurant::serveClient(){
-    if(entityManager->firstClient!= nullptr){
-        money += entityManager->firstClient->serve(player->getBurger());
+    Client* tempclient = entityManager->firstClient; 
+    while(tempclient != nullptr){
+        if(player->getBurger()->Burgers_Equal(tempclient->getBurger(),player->getBurger())){
+            money += tempclient->serve(player->getBurger());
+            break; 
+        }
+        tempclient = tempclient->nextClient;
     }
+    player->getBurger()->clear(); 
 }
 void Restaurant::keyPressed(int key) {
     player->keyPressed(key);
+    if(player->remove){
+        money--;
+        player->remove = false; 
+    }
     if(key == 's'){
         serveClient();
     }

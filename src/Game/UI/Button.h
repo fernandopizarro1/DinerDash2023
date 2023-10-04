@@ -10,9 +10,15 @@ class Button {
         void render();
         bool wasPressed();
         void reset();
+        void setColor(int red, int green, int blue){
+            this->red = red;
+            this->green = green;
+            this->blue = blue; 
+        }
 
     private:
         int xPos, yPos, width, height;
+        int red, green, blue; // to change color of button to whatever i want
         ofImage buttonImage;
         ofImage clickedButtonImage;
         bool pressed = false;

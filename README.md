@@ -7,6 +7,10 @@ After compiling and running the project for the first time, you should be able t
 - The chef will move from one side of the screen to another
 - Using the 'e' key, you can select ingredients to add to your burger.
 - Using the 's' key, you can serve customers in line the burger you have created.
+- The added decorations were:
+    Welcome Matt on top right
+    Table x4
+    Chair x8
 
 # Classes
 This project has a lot of classes and OOP concepts in it, so make sure to study the code base well and familiarize yourself with OOP.
@@ -15,5 +19,6 @@ This project has a lot of classes and OOP concepts in it, so make sure to study 
 Please fill out the information below for each member of the team:
 
 ### [ STUDENT A NAME : STUDENT A EMAIL ]
-
+Fernando L. Pizarro Diaz : fernando.pizarro1@upr.edu
 ### [ STUDENT B NAME : STUDENT B EMAIL ]
+Andrea P. Segarra Felix : andrea.segarra1@upr.edu

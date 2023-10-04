@@ -7,7 +7,24 @@ void EntityManager::tick(){
     if(firstClient != nullptr){
         firstClient->tick();
     }
+    checkLeavingClients();
     removeLeavingClients();
+}
+
+void EntityManager::checkLeavingClients(){
+    Client* tempClient = firstClient;
+    while(tempClient != nullptr){
+        if(Inspector* inspector = dynamic_cast<Inspector*>(tempClient)){
+            if(inspector->getPatience() == 0){
+                left++;
+                Inspector_left=true;
+            }
+        } else if(tempClient->getPatience() == 0){
+                left++;
+            }
+        
+        tempClient = tempClient->nextClient;
+    }
 }
 
 void EntityManager::removeLeavingClients(){

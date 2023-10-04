@@ -7,11 +7,14 @@ class Player: public Entity{
 
     private:
         int speed = 5;
+        float counterx, countery, counterw, counterh; 
         string facing = "right";
         Animation *chefAnim;
         Burger *burger;
         EntityManager* entityManager;
+        Item* item;
     public:
+        Animation *FireAnim; 
         Player(int x, int y, int width, int height, ofImage sprite, EntityManager* em);
         void tick();
         void render();
@@ -20,6 +23,10 @@ class Player: public Entity{
         void mousePressed(int, int, int);
         void setFacing(string);
         BaseCounter* getActiveCounter();
+        StoveCounter* getActiveStove();
         Burger* getBurger(){ return burger;
         }
+        bool remove = false; 
+        bool cooked = false;
+        bool cooking = false; 
 };

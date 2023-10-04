@@ -1,16 +1,21 @@
 #include "ofApp.h"
 //--------------------------------------------------------------
 void ofApp::setup(){
-	ofSetWindowTitle("Java Game Box");
+	ofSetWindowTitle("Diner Dash!");
 	//States
 	menuState = new MenuState();
 	gameState = new GameState();
+	startscreen = new StartScreen(); 
+	loseState = new LoseState();
+	winState = new WinState();
+
 	// Initial State
 	currentState = menuState;
 
 	// Sound
-	sound.load("music.wav");
+	sound.load("jazz.mp3");
 	sound.setLoop(true);
+	sound.setVolume(0.4);
 	sound.play();
 
 }
@@ -22,8 +27,14 @@ void ofApp::update(){
 		if(currentState->hasFinished()){
 			if(currentState->getNextState() == "Menu"){
 				currentState = menuState;
-			}else if(currentState->getNextState() == "Game"){
+			} else if (currentState->getNextState() == "Start") {
+				currentState = startscreen; 
+			} else if(currentState->getNextState() == "Game"){
 				currentState = gameState;
+			} else if(currentState->getNextState() == "Lose"){
+				currentState = loseState; 
+			} else if(currentState->getNextState() == "Win"){
+				currentState = winState;
 			}
 			currentState->reset();
 		}

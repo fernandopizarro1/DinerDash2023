@@ -1,13 +1,13 @@
 #pragma once
 
 #include "State.h"
-#include "Button.h"
 
 class MenuState : public State {
 private:
 	ofImage img1;
 	Button *startButton;
-
+	ofImage title; 
+	
 public:
 	MenuState();
 	void tick();
